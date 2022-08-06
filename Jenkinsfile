@@ -32,7 +32,7 @@ pipeline {
         stage("deploy") {
             steps {
                  script {
-                 echo "Deploying to ${ENV}"
+                 echo "Deploying the application...YES!!!"
                   }
                 }
             }

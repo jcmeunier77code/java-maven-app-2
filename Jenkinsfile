@@ -23,9 +23,9 @@ pipeline {
         		        script {
         		        echo "building the application..."
         		        }
-        		        }
-                    }
-                }
+        		    }
+                 }
+
 
 
         stage("deploy") {
@@ -36,6 +36,6 @@ pipeline {
                     }
                 }
         }
-
+    }
 
 

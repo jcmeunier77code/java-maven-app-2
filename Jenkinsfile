@@ -21,12 +21,7 @@ pipeline {
 
                     steps {
         		        script {
-        		        echo "building the docker image"
-        		        withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                            sh 'docker build -t jcmeunier77/bootcamp-java-maven-app:jma-3.0 .'
-                            sh "echo $PASS | docker login -u $USER --password-stdin"
-                            sh "docker push jcmeunier77/bootcamp-java-maven-app:jma-3.0"
-
+        		        echo "building the application..."
         		        }
         		        }
                     }

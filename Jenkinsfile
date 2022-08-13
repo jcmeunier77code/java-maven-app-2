@@ -7,27 +7,31 @@ pipeline {
 
     stages {
 
-        stage("test") {
+        stage("build jar") {
+
                     steps {
         		        script {
-        		        echo "testing the application..."
-        		        echo "Executing pipeline for $BRANCH_NAME"
+        		        echo "building the application"
+        		        sh 'mvn package'
         		        }
                     }
                 }
 
-        stage("build") {
-                    when {
-                        expression {
-                            BRANCH_NAME == 'master'
-                        }
-                    }
+        stage("build image") {
+
                     steps {
         		        script {
-        		        echo "building the application..."
+        		        echo "building the docker image"
+        		        withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                            sh 'docker build -t jcmeunier77/bootcamp-java-maven-app:jma-3.0 .'
+                            sh "echo $PASS | docker login -u $USER --password-stdin"
+                            sh "docker push jcmeunier77/bootcamp-java-maven-app:jma-3.0"
+
+        		        }
         		        }
                     }
                 }
+
 
         stage("deploy") {
                     steps {

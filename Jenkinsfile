@@ -1,7 +1,5 @@
 def gv
 
-hello
-
 pipeline {
     agent any
     stages {

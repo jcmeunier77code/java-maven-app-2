@@ -1,47 +1,40 @@
 pipeline {
 
-    agent any
-    tools {
-        maven 'maven-3.8.6'
-    }
+    agent none
+
 
     stages {
 
-        stage("build jar") {
+        stage("build") {
+                steps {
+                    script {
+                        echo "building the application"
+                    }
+                }
+
+        }
+
+
+        stage("test") {
 
                     steps {
         		        script {
-        		        echo "building the application"
-        		        sh 'mvn package'
+                            echo "building the application"
         		        }
                     }
                 }
 
-        stage("build image") {
+        stage("deploy") {
 
                     steps {
         		        script {
-        		        echo "building the docker image"
-        		        withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-        		            sh 'docker build -t jcmeunier77/bootcamp-java-maven-app:jma-3.0 .'
-        		            sh "echo $PASS | docker login -u $USER --password-stdin"
-        		            sh "docker push jcmeunier77/bootcamp-java-maven-app:jma-3.0"
+        		            echo "building the application"
+
 
         		        }
         		        }
         		    }
-                 }
 
-
-
-        stage("deploy") {
-                    steps {
-                        script {
-        		        echo "deploying the application..."
-        		        echo "c'est la fête du slip"
-                        }
-                    }
-                }
         }
     }
 

@@ -1,6 +1,5 @@
 def gv
 
-ok
 
 pipeline {
 

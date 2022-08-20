@@ -17,10 +17,11 @@ def buildImage(String imageName) {
 def deployApp() {
     echo "deploying the application..."
     def shellCmd = "bash ./server-cmds.sh ${IMAGE_NAME}"
+    def ec2Instance = "ec2-user@54.194.84.33"
     sshagent(['ec2-server-key']) {
-        sh "scp server-cmds.sh ec2-user@54.194.84.33:/home/ec2-user"
-        sh "scp docker-compose.yaml ec2-user@54.194.84.33:/home/ec2-user"
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.194.84.33 ${shellCmd}"
+        sh "scp server-cmds.sh $ec2Instance:/home/ec2-user"
+        sh "scp docker-compose.yaml $ec2Instance:/home/ec2-user"
+        sh "ssh -o StrictHostKeyChecking=no $ec2Instance ${shellCmd}"
         echo "C'est la fête du slip, yeeeaaaahhhh !!!"
     }
 }

@@ -28,7 +28,7 @@ pipeline {
 
                     steps {
         		        script {
-                            gv.buildJar(env.IMAGE_NAME)
+                            gv.buildJar()
         		        }
                     }
                 }
@@ -37,7 +37,7 @@ pipeline {
 
                     steps {
         		        script {
-        		            gv.buildImage()
+        		            gv.buildImage(env.IMAGE_NAME)
 
 
         		        }

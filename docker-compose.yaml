@@ -1,7 +1,8 @@
 version: '3.8'
 services:
   java-maven-app:
-    image: jcmeunier77/bootcamp-java-maven-app:jma-4.0
+#    image: jcmeunier77/bootcamp-java-maven-app:jma-4.0
+    image: ${IMAGE}
     ports:
       - 8080:8080
   postgres:

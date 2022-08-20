@@ -8,6 +8,9 @@ pipeline {
     tools {
         maven 'maven-3.8.6'
     }
+    environment {
+        IMAGE_NAME = 'jcmeunier77/bootcamp-java-maven-app:jma-4.0'
+    }
 
     stages {
 
@@ -25,7 +28,7 @@ pipeline {
 
                     steps {
         		        script {
-                            gv.buildJar()
+                            gv.buildJar(env.IMAGE_NAME)
         		        }
                     }
                 }
